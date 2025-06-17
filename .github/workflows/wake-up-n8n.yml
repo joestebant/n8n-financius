@@ -1,0 +1,13 @@
+name: Wake up n8n (Railway)
+
+on:
+  schedule:
+    - cron: '11 12 * * *'  # Esto es 08:09 Chile (-04:00 UTC = +4h → 12:09 UTC)
+  workflow_dispatch:
+
+jobs:
+  ping_n8n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔁 Wake n8n instance
+        run: curl -m 15 --retry 2 https://n8n-financius-production.up.railway.app/
